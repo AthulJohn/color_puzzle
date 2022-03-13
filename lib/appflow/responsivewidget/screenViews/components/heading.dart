@@ -13,9 +13,10 @@ class Heading extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "My Colorfull puzzle",
+            "My Easy Puzzle",
             style: TextStyle(
                 fontSize: siz,
+                color: const Color(0xff4855B2),
                 fontWeight: FontWeight.bold,
                 fontFamily: "Swanky"),
           ),

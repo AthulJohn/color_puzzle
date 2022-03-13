@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 
 class ArrowWidget extends StatelessWidget {
-  final double ang;
-  const ArrowWidget(this.ang, {Key? key}) : super(key: key);
+  const ArrowWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Transform.rotate(
-        angle: (math.pi / 2) * ang,
-        child: const Icon(Icons.arrow_upward, size: 24.0));
+    return const Icon(Icons.cut, color: Color(0x774855B2), size: 48.0);
   }
 }
 
@@ -18,6 +14,7 @@ class MixWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Icon(Icons.format_paint_sharp, size: 24.0);
+    return const Icon(Icons.add_circle_rounded,
+        color: Colors.black54, size: 50.0);
   }
 }

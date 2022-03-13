@@ -1,6 +1,8 @@
 class Colour {
   double green = 0, d = 1, red = 0, blue = 0;
   Colour(this.red, this.green, this.blue, this.d);
+
+  Colour.white();
   @override
   String toString() {
     return '$red/$d:$green/$d:$blue/$d';
