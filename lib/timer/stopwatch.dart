@@ -22,7 +22,9 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
     // TODO: implement initState
     super.initState();
     Timer.periodic(const Duration(seconds: 1), (tm) {
-      Provider.of<ProviderModel>(context, listen: false).setTime();
+      if (mounted) {
+        Provider.of<ProviderModel>(context, listen: false).setTime();
+      }
     });
   }
 

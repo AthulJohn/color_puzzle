@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../model/providermodel.dart';
 import 'dimensionchecker.dart';
 import 'dmnsn_enum.dart';
 import 'screenViews/desktopview.dart';
@@ -15,14 +17,18 @@ class Responsiver extends StatefulWidget {
 class _ResponsiverState extends State<Responsiver> {
   @override
   Widget build(BuildContext context) {
-    if (checkDimensions(context) == Dmnsn.phone) {
-      return const PhoneView();
-    } else if (checkDimensions(context) == Dmnsn.tablet) {
-      return const PhoneView(); //TODO: Tablet view
-    } else if (checkDimensions(context) == Dmnsn.desktop) {
-      return DeskView();
-    } else {
-      return Container();
-    }
+    return ChangeNotifierProvider<ProviderModel>(
+        create: (context) => ProviderModel(),
+        builder: (context, child) {
+          if (checkDimensions(context) == Dmnsn.phone) {
+            return const PhoneView();
+          } else if (checkDimensions(context) == Dmnsn.tablet) {
+            return const PhoneView(); //TODO: Tablet view
+          } else if (checkDimensions(context) == Dmnsn.desktop) {
+            return DeskView();
+          } else {
+            return Container();
+          }
+        });
   }
 }

@@ -10,6 +10,7 @@ class ProviderModel extends ChangeNotifier {
   int moves = 0;
   List<int?> starttiles = [], endtiles = [], resettiles = [];
   List<List<TileData>> tiles = [];
+  ScrollController sc = ScrollController();
   bool wonGame = false;
   void reset() {
     time = 0;
@@ -269,5 +270,10 @@ class ProviderModel extends ChangeNotifier {
     resettiles.addAll(starttiles);
 
     findsolution();
+  }
+
+  void scrollToHowTo(double off) {
+    sc.animateTo(off,
+        duration: Duration(milliseconds: 500), curve: Curves.decelerate);
   }
 }

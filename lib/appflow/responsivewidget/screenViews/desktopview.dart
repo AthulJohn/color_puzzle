@@ -9,23 +9,27 @@ import 'package:slide_puzzle_prototype/timer/stopwatch.dart';
 
 import 'components/buttons.dart';
 import 'components/heading.dart';
+import 'components/howto.dart';
 
 class DeskView extends StatelessWidget {
   const DeskView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      alignment: Alignment.centerLeft,
+    return ListView(
+      controller: Provider.of<ProviderModel>(context).sc,
       children: [
-        Image.asset("assets/bg.png", fit: BoxFit.cover),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ChangeNotifierProvider<ProviderModel>(
-              create: (context) => ProviderModel(),
-              builder: (context, child) {
-                return Row(
+        SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            fit: StackFit.expand,
+            alignment: Alignment.centerLeft,
+            children: [
+              Image.asset("assets/bg.png",
+                  fit: BoxFit.cover, alignment: Alignment.centerLeft),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
                   children: [
                     const Spacer(
                       flex: 1,
@@ -62,16 +66,29 @@ class DeskView extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  const StopWatchWidget(),
-                                  const Expanded(child: MovesShower()),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: const [
-                                      ResetButton(),
-                                      NewGameButton(),
-                                    ],
-                                  )
+                                  const Expanded(child: StopWatchWidget()),
+                                  const Expanded(flex: 2, child: MovesShower()),
+                                  Expanded(
+                                      flex: 2,
+                                      child: Wrap(
+                                        alignment: WrapAlignment.center,
+                                        spacing: 10,
+                                        runSpacing: 10,
+                                        children: const [
+                                          ResetButton(),
+                                          NewGameButton(),
+                                          HowToButton(),
+                                        ],
+                                      ) // Row(
+                                      // mainAxisAlignment:
+                                      //     MainAxisAlignment.spaceEvenly,
+                                      // children: const [
+                                      //   ResetButton(),
+                                      //   NewGameButton(),
+                                      //   HowToButton(),
+                                      // ],
+                                      // ),
+                                      )
                                 ],
                               ),
                             ),
@@ -105,9 +122,12 @@ class DeskView extends StatelessWidget {
                       ), //PuzzleBoard(),
                     ),
                   ],
-                );
-              }),
+                ),
+              ),
+            ],
+          ),
         ),
+        const HowTo(),
       ],
     );
   }

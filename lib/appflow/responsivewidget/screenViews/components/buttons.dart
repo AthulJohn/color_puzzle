@@ -24,7 +24,12 @@ class NewGameButton extends StatelessWidget {
       onPressed: () {
         Provider.of<ProviderModel>(context, listen: false).newGame();
       },
-      child: const Text('New Game'),
+      child: const Text(
+        'New Game',
+        style: TextStyle(
+          fontFamily: "Crayon",
+        ),
+      ),
     );
   }
 }
@@ -48,7 +53,42 @@ class ResetButton extends StatelessWidget {
       onPressed: () {
         Provider.of<ProviderModel>(context, listen: false).reset();
       },
-      child: const Text('Reset'),
+      child: const Text(
+        'Reset',
+        style: TextStyle(
+          fontFamily: "Crayon",
+        ),
+      ),
+    );
+  }
+}
+
+class HowToButton extends StatelessWidget {
+  const HowToButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(const Color(0xff4855B2)),
+        foregroundColor: MaterialStateProperty.all(Colors.white),
+        shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
+        padding: MaterialStateProperty.all(
+            checkDimensions(context) != Dmnsn.desktop
+                ? const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0)
+                : const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0)),
+      ),
+      onPressed: () {
+        Provider.of<ProviderModel>(context, listen: false)
+            .scrollToHowTo(MediaQuery.of(context).size.height);
+      },
+      child: const Text(
+        'How To Play',
+        style: TextStyle(
+          fontFamily: "Crayon",
+        ),
+      ),
     );
   }
 }
